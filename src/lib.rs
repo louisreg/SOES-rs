@@ -1,14 +1,16 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+#![cfg_attr(not(feature = "std"), no_std)]
+#![allow(non_camel_case_types, non_snake_case, non_upper_case_globals)]
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[cfg(feature = "std")]
+extern crate std;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub mod bindings;
+
+pub mod soes;
+
+pub use soes::*;
+
+/// Wrapper simple pour tester
+pub fn soes_version() -> u32 {
+    1
 }

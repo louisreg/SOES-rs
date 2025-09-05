@@ -4,3 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+cty = "0.2"
+embedded-hal = "1.0.0"
+
+[features]
+default = [] # => no_std par défaut
+std = []     # => active std (tests, desktop)
+
+[build-dependencies]
+bindgen = "0.72.1"
+cc = "1.2.35"

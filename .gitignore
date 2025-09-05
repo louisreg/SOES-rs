@@ -1,5 +1,6 @@
 # Cargo build output
 /target/
+**/target/
 
 # Rust/Cargo log files
 **/*.rs.bk
@@ -44,3 +45,4 @@ Desktop.ini
 *.log
 *.bak
 *.old
+*.o
