@@ -133,8 +133,13 @@ pub const ESC_CSR_CMD_READ: u32 = BIT(31) | BIT(30);
 pub const ESC_CSR_CMD_WRITE: u32 = BIT(31);
 
 #[inline(always)]
-pub const fn ESC_CSR_CMD_SIZE(x: u32) -> u32 {
-    x << 16
+pub const fn esc_csr_cmd_size(len: u32) -> u32 {
+    match len {
+        1 => 0 << 16,
+        2 => 1 << 16,
+        4 => 2 << 16,
+        _ => 0 << 16, // fallback, never expect this
+    }
 }
 
 // Reset control

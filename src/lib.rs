@@ -9,8 +9,10 @@ pub mod bindings;
 pub mod soes;
 
 pub use soes::*;
+pub mod drivers;
+pub mod esc_driver;
 
-/// Wrapper simple pour tester
+/// Simple Wrapper for tests (??)
 pub fn soes_version() -> u32 {
     1
 }
