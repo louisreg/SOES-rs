@@ -29,7 +29,7 @@ pub struct _Objects {
     pub LedIn: u8,
 }
 
-// Crée la variable globale, mutable, avec le nom exact attendu par le C
+// global variable expected by soes-c
 #[no_mangle]
 pub static mut Obj: _Objects = _Objects {
     serial: 0,
@@ -104,18 +104,14 @@ async fn main(_spawner: Spawner) {
         let drv_ref: &mut dyn EscDriver = &mut *drv_ptr;
         set_driver(drv_ref);
     }
-    let mut slv = soes::EcatSlave::new(dummy_esc_cfg());
+    let mut ecat_slv = soes::EcatSlave::new(dummy_esc_cfg());
 
-    slv.set_output_cb(my_outputs);
-    slv.set_input_cb(my_inputs);
-    slv.init();
-    slv.pdi_debug();
+    ecat_slv.set_output_cb(my_outputs);
+    ecat_slv.set_input_cb(my_inputs);
+    ecat_slv.init();
+    ecat_slv.pdi_debug();
 
     loop {
-        //defmt::info!("Hello, World!");
-        //
-
-        slv.run();
-        //embassy_time::Timer::after(embassy_time::Duration::from_millis(100)).await;
+        ecat_slv.run();
     }
 }
